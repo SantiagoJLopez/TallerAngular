@@ -1,0 +1,63 @@
+<header>
+  <h1>TV Series</h1>
+</header>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-7">
+      <table id="seriesTable" class="table table-hover align-middle">
+        <thead class="bg-white text-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Channel</th>
+            <th scope="col">Seasons</th>
+          </tr>
+        </thead>
+
+        <tbody id="seriesTableBody" class="table-secondary">
+          @for (s of series; track s) {
+            <tr>
+              <th scope="row">{{ s.id }}</th>
+              <td>
+                <a href="#" class="serie-link text-decoration-none"
+                   (click)="showSerieDetail(s)">
+                  {{ s.nombre }}
+                </a>
+              </td>
+              <td>{{ s.canal }}</td>
+              <td>{{ s.temporadas }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      <p class="fw-semibold">
+        Seasons average: <span id="total-seasons" class="text-dark">
+          {{ getSeasonsAverage() }}
+        </span>
+      </p>
+    </div>
+
+    <div class="col-md-5">
+      @if (selectedSerie) {
+        <div id="card-container">
+          <div class="card shadow-sm" style="width: 20rem;">
+            <img [src]="selectedSerie.imagen"
+                 class="card-img-top"
+                 [alt]="selectedSerie.nombre">
+            <div class="card-body">
+              <h5 class="card-title">{{ selectedSerie.nombre }}</h5>
+              <p class="card-text">{{ selectedSerie.descripcion }}</p>
+              <a [href]="selectedSerie.enlace"
+                 target="_blank"
+                 class="text-info text-decoration-none">
+                {{ selectedSerie.enlace }}
+              </a>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
